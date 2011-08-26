@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var sys = require('sys');
+var uuid = require('node-uuid');
 var connect = require('connect');
 var ws = connect.createServer(
     connect.logger(),
@@ -10,6 +11,9 @@ var ws = connect.createServer(
         });
         app.get('/', function(req, res, next) {
             res.end('Try POSTing it');
+        });
+        app.get('/uuid', function(req, res, next) {
+            res.end(JSON.stringify({guid: uuid()}));
         });
     })
 ).listen(4000);
