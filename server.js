@@ -7,12 +7,14 @@ var ws = connect.createServer(
     connect.bodyParser(),
     connect.router(function(app) {
         app.post('/', function(req, res, next) {
+            res.setHeader('Content-Type', 'text/plain');
             res.end(req.rawBody);
         });
         app.get('/', function(req, res, next) {
             res.end('Try POSTing it');
         });
         app.get('/uuid', function(req, res, next) {
+            res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({guid: uuid()}));
         });
     })
