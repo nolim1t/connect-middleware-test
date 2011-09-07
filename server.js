@@ -5,6 +5,7 @@ var connect = require('connect');
 var ws = connect.createServer(
     connect.logger(),
     connect.bodyParser(),
+		connect.static(__dirname), // Use a different static path in a production environment :P
     connect.router(function(app) {
         app.post('/', function(req, res, next) {
             res.setHeader('Content-Type', 'text/plain');
